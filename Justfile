@@ -1,8 +1,13 @@
-build:
+# run these if you are already on NixOS, or inside the container
+build-installer:
   nix build '.#nixosConfigurations.superbird.config.system.build.installer' -j"$(nproc)" --show-trace
 
 build-system:
   nix build '.#nixosConfigurations.superbird.config.system.build.toplevel' -j"$(nproc)" --show-trace
+
+docker-bash:
+  docker compose run --rm nix bash
+
 
 zip-system:
   #!/usr/bin/env bash
